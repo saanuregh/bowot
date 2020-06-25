@@ -77,4 +77,4 @@ A fun discord bot made with Golang using [disgord](https://github.com/andersfyll
 | clear       |               Clear the queue.                |
 | remove      |        Remove a track from the queue.         |
 | leave       |       Leave the current voice channel.        |
-| queue       |               Shows the queue."               |
+| queue       |               Shows the queue.                |
