@@ -63,38 +63,43 @@ func init() {
 			Text:        "**%s** tickles **%s**",
 		},
 	}
-	for _, c := range commands {
-		cmds = append(cmds,
-			&gommand.Command{
-				Name:        c.Name,
-				Aliases:     []string{},
-				Description: c.Description,
-				Category:    funCategory,
-				Function: func(ctx *gommand.Context) error {
-					var f struct {
-						URL string `json:"url"`
-					}
-					_, _, errs := gorequest.New().Get("https://nekos.life/api/v2/img/" + c.Name).EndStruct(&f)
-					if len(errs) > 0 {
-						return errs[0]
-					}
-					member := ctx.Args[0].(*disgord.Member)
-					_, err := ctx.Reply(embeds.InfoImage(
-						fmt.Sprintf(c.Text, utils.GetGuildName(ctx.Message.Member), utils.GetGuildName(member)),
-						"",
-						"",
-						f.URL,
-					))
-					return err
+
+	nekoCmdBuilder := func(c command) *gommand.Command {
+		return &gommand.Command{
+			Name:        c.Name,
+			Aliases:     []string{},
+			Description: c.Description,
+			Category:    funCategory,
+			Function: func(ctx *gommand.Context) error {
+				var f struct {
+					URL string `json:"url"`
+				}
+				_, _, errs := gorequest.New().Get("https://nekos.life/api/v2/img/" + c.Name).EndStruct(&f)
+				if len(errs) > 0 {
+					return errs[0]
+				}
+				member := ctx.Args[0].(*disgord.Member)
+				_, err := ctx.Reply(embeds.InfoImage(
+					fmt.Sprintf(c.Text, utils.GetGuildName(ctx.Message.Member), utils.GetGuildName(member)),
+					"",
+					"",
+					f.URL,
+				))
+				return err
+			},
+			ArgTransformers: []gommand.ArgTransformer{
+				{
+					Function: gommand.MemberTransformer,
+					Optional: false,
 				},
-				ArgTransformers: []gommand.ArgTransformer{
-					{
-						Function: gommand.MemberTransformer,
-						Optional: false,
-					},
-				},
-			})
+			},
+		}
 	}
+
+	for _, c := range commands {
+		cmds = append(cmds, nekoCmdBuilder(c))
+	}
+
 	cmds = append(cmds,
 		&gommand.Command{
 			Name:        "8ball",
