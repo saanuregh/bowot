@@ -17,12 +17,11 @@ jobs:
     - name: Show Gist contents
       id: run
       run: |
-        cp ${{ steps.get.outputs.file }} . && ls
-    - name: Build, Push and Deploy to Heroku #set the whatever name you want to this step
-      id: heroku
-      uses: jctaveras/heroku-deploy@v1.0.0  # use the latest version of the action
+        cp ${{ steps.get.outputs.file }}
+    - uses: akhileshns/heroku-deploy@v3.0.5 # This is the action
       with:
-        email: ${{ secrets.HEROKU_EMAIL }} 
-        api_key: ${{ secrets.HEROKU_API_KEY }}
-        app_name: ${{ secrets.HEROKU_APP_NAME }}
-        dockerfile: "."
+        heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+        heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
+        heroku_email: ${{secrets.HEROKU_EMAIL}}
+        usedocker: true
+        docker_heroku_process_type: "worker"
