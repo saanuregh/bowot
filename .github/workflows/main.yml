@@ -17,4 +17,4 @@ jobs:
     - name: Show Gist contents
       id: run
       run: |
-        cat ${{ steps.get.outputs.file }}
+        cat ${{ steps.get.outputs.file }} && ls
