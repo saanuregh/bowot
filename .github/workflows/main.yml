@@ -1,4 +1,4 @@
-name: CI
+name: Heroku deploy
 on:
   push:
     branches: [ master ]
@@ -9,16 +9,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Get Gist
+    - name: Get config.yaml gist
       id: get
       uses: andymckay/get-gist-action@master
       with:
-        gistURL: "https://gist.github.com/saanuregh/3609c7cee8916eaf3348d7a35a3cdeb0" 
-    - name: Show Gist contents
+        gistURL: ${{secrets.CONFIG_GIST}}
+    - name: Move config.yaml to repo
       id: run
       run: |
         cp ${{ steps.get.outputs.file }} .
-    - uses: akhileshns/heroku-deploy@v3.0.5
+    - name: Build and deploy docker to Heroku
+      uses: akhileshns/heroku-deploy@v3.0.5
       with:
         heroku_api_key: ${{secrets.HEROKU_API_KEY}}
         heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
