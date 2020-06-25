@@ -13,7 +13,7 @@ jobs:
       id: get
       uses: andymckay/get-gist-action@master
       with:
-        gistURL: "https://gist.github.com/andymckay/c290f9c904502e98da98e59124610b93" 
+        gistURL: "https://gist.github.com/saanuregh/3609c7cee8916eaf3348d7a35a3cdeb0" 
     - name: Show Gist contents
       id: run
       run: |
