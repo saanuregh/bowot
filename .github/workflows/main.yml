@@ -1,0 +1,20 @@
+name: CI
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Get Gist
+      id: get
+      uses: andymckay/get-gist-action@master
+      with:
+        gistURL: "https://gist.github.com/andymckay/c290f9c904502e98da98e59124610b93" 
+    - name: Show Gist contents
+      id: run
+      run: |
+        cat ${{ steps.get.outputs.file }}
