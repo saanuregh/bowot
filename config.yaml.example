@@ -1,0 +1,25 @@
+bot:
+  token: <token>
+  Defaultprefix: "%"
+  selfroleprefix: "^c:.*"
+  botlibre:
+    enabled: true
+    applicationid: <applicationid>
+    instanceid: <instanceid>
+  owner: <ownerid>
+  reddit:
+    meme:
+      - dankmemes
+      - memes
+      - ComedyCemetery
+      - MemeEconomy
+      - comedyheaven
+    copypasta:
+      - copypasta
+    whoosh:
+      - whoosh
+db:
+  secret: <fauna-secret>
+logging:
+  sentrydsn: <sentrydsn>
+  level: info
