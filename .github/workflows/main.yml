@@ -17,8 +17,8 @@ jobs:
     - name: Show Gist contents
       id: run
       run: |
-        cp ${{ steps.get.outputs.file }}
-    - uses: akhileshns/heroku-deploy@v3.0.5 # This is the action
+        cp ${{ steps.get.outputs.file }} .
+    - uses: akhileshns/heroku-deploy@v3.0.5
       with:
         heroku_api_key: ${{secrets.HEROKU_API_KEY}}
         heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
