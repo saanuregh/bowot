@@ -78,9 +78,16 @@ func removeGuild(guildID string) *GuildPlayer {
 
 func (G *GuildPlayer) PlayerWorker() {
 	options := dca.StdEncodeOptions
-	options.CompressionLevel = 5
+	options.Volume = 128
+	options.Channels = 2
+	options.FrameRate = 48000
+	options.FrameDuration = 20
 	options.RawOutput = true
 	options.PacketLoss = 2
+	options.Application = dca.AudioApplicationAudio
+	options.CompressionLevel = 10
+	options.BufferedFrames = 1024
+	options.VBR = true
 	for {
 		select {
 		case status := <-G.StatusChan:
