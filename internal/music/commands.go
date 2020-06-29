@@ -172,7 +172,7 @@ func play(ctx *gommand.Context) error {
 			for _, v := range videos {
 				var duration int64
 				if v.Duration != nil {
-					duration = *v.Duration
+					duration = int64(*v.Duration)
 				} else {
 					duration = 0
 				}

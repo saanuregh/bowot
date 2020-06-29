@@ -4,13 +4,13 @@ go 1.13
 
 require (
 	github.com/TheZeroSlave/zapsentry v1.4.0
-	github.com/andersfylling/disgord v0.18.1-0.20200620100706-82970d382dc0
+	github.com/andersfylling/disgord v0.18.0
 	github.com/andersfylling/snowflake/v4 v4.0.2
 	github.com/auttaja/gommand v1.3.1
 	github.com/bregydoc/gtranslate v0.0.0-20191225024717-45b28d4fda86
 	github.com/elazarl/goproxy v0.0.0-20200426045556-49ad98f6dac1 // indirect
 	github.com/getsentry/sentry-go v0.6.1 // indirect
-	github.com/jonas747/ogg v0.0.0-20161220051205-b4f6f4cf3757 // indirect
+	github.com/jonas747/ogg v0.0.0-20161220051205-b4f6f4cf3757
 	github.com/json-iterator/go v1.1.10 // indirect
 	github.com/kkyr/fig v0.2.0
 	github.com/klauspost/compress v1.10.10 // indirect
@@ -24,7 +24,6 @@ require (
 	github.com/pkg/errors v0.9.1
 	github.com/robertkrimen/otto v0.0.0-20191219234010-c382bd3c16ff // indirect
 	github.com/robfig/cron/v3 v3.0.1
-	github.com/yyewolf/dca-disgord v0.0.0-20190410103004-b16040de55c3
 	go.uber.org/zap v1.15.0
 	golang.org/x/net v0.0.0-20200625001655-4c5254603344 // indirect
 	golang.org/x/sys v0.0.0-20200625212154-ddb9806d33ae // indirect

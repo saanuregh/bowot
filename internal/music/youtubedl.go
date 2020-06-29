@@ -11,13 +11,13 @@ import (
 )
 
 type youtubeDLEntry struct {
-	Query        string `json:"-"`
-	ID           string `json:"id"`
-	Title        string `json:"title"`
-	URL          string `json:"url"`
-	ExtractorKey string `json:"extractor_key"`
-	IsLive       bool   `json:"is_live"`
-	Duration     *int64 `json:"duration"`
+	Query        string   `json:"-"`
+	ID           string   `json:"id"`
+	Title        string   `json:"title"`
+	URL          string   `json:"url"`
+	ExtractorKey string   `json:"extractor_key"`
+	IsLive       bool     `json:"is_live"`
+	Duration     *float64 `json:"duration"`
 }
 
 type youtubeDLResponse []youtubeDLEntry

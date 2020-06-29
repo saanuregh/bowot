@@ -1,6 +1,7 @@
 package music
 
 import (
+	"bowot/internal/dca"
 	"bowot/internal/embeds"
 	"context"
 	"fmt"
@@ -11,7 +12,6 @@ import (
 
 	"github.com/andersfylling/disgord"
 	"github.com/lrita/cmap"
-	dca "github.com/yyewolf/dca-disgord"
 )
 
 const (
@@ -77,17 +77,6 @@ func removeGuild(guildID string) *GuildPlayer {
 }
 
 func (G *GuildPlayer) PlayerWorker() {
-	options := dca.StdEncodeOptions
-	options.Volume = 128
-	options.Channels = 2
-	options.FrameRate = 48000
-	options.FrameDuration = 20
-	options.RawOutput = true
-	options.PacketLoss = 2
-	options.Application = dca.AudioApplicationAudio
-	options.CompressionLevel = 10
-	options.BufferedFrames = 1024
-	options.VBR = true
 	for {
 		select {
 		case status := <-G.StatusChan:
@@ -124,6 +113,14 @@ func (G *GuildPlayer) PlayerWorker() {
 								fields...,
 							),
 						)
+						options := dca.StdEncodeOptions
+						options.RawOutput = true
+						options.CompressionLevel = 5
+						if G.CurrentTrack.Duration > time.Duration(0) {
+							options.BufferedFrames = 1024 * 512
+						} else {
+							options.BufferedFrames = 1024
+						}
 						encodingSession, err := dca.EncodeFile(G.CurrentTrack.DownloadURL, options)
 						if err != nil {
 							client.Logger().Error(err)
